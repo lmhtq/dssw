@@ -161,20 +161,20 @@ int get_number_of_sap(void)
 }
 
 /* allocate n SAPs */
-void sap_node_alloc_n(sap_node *p_sn)
+void sap_node_alloc_n(sap_node *p_sn, int n_sap)
 {
-	p_ssn = (sap_sta_node*)malloc(n_node * sizeof(sap_sta_node));
+	p_sn = (sap_node*)malloc(n_sap * sizeof(sap_node));
 }
 
 /* free n SAPs */
 void sap_node_free_n(sap_node *p_sn)
 {
-	free(p_ssn);
-	p_ssn = NULL;
+	free(p_sn);
+	p_sn = NULL;
 }
 
 /* set n nodes with certain parameters */
-void sap_node_n_set_parameter(int numbers);
+void sap_node_n_set_parameter(int numbers)
 {
 	FILE *fp = popen("iw dev wlp2s0 station dump | sed \'s/://g\' " ,"r");
 	/*
@@ -247,6 +247,9 @@ void sap_node_n_set_parameter(int numbers);
 	//printf("%s\n", tmp);
 }
 
+/* get the number of clients of a SAP */
+void get_number_of_sap_clients(sap_node *p_saphead);
+
 
 /* channel table */
 
@@ -264,6 +267,16 @@ void channel_table_free_n(channel_info *p_ct)
 }
 
 
+/* mapping table */
+
+/* get sum number of clients */
+int get_sum_of_clients(void);
+
+/* generate a mapping table */
+void generate_mapping_table(mapping_info *p_mt);
+
+/* update a mapping table */
+void update_mapping_table(mapping_info *p_mt);
 
 int main()
 {

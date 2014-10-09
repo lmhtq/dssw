@@ -87,6 +87,7 @@ typedef struct sap_node
 
 
 	/* client of a SAP*/
+	int numbers;
 	struct station_node *pclient;
 } sap_node;
 
@@ -100,13 +101,16 @@ int numbers_of_sap;
 int get_number_of_sap(void);
 
 /* allocate n SAPs */
-void sap_node_alloc_n(sap_node *p_sn);
+void sap_node_alloc_n(sap_node *p_sn, int n_node);
 
 /* free n SAPs */
 void sap_node_free_n(sap_node *p_sn);
 
 /* set n nodes with certain parameters */
 void sap_node_n_set_parameter(int numbers);
+
+/* get the number of clients of a SAP */
+void get_number_of_sap_clients(sap_node *p_saphead);
 
 
 /* channel table */
@@ -134,4 +138,10 @@ typedef struct map
 mapping_info *p_mapping_table;
 
 /* get sum number of clients */
-int get_sum_of_clients()
+int get_sum_of_clients(void);
+
+/* generate a mapping table */
+void generate_mapping_table(mapping_info *p_mt);
+
+/* update a mapping table */
+void update_mapping_table(mapping_info *p_mt);
