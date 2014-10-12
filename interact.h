@@ -15,10 +15,10 @@ void handle_local_cmd(char *argv);
 void handle_ac_cmd(char *cmds);
 
 /* set subnet's channel */
-void set_sap_channel(void);
+void set_sap_channel(char *cmds);
 
 /* upsend a sap's number of clients */
-void upsend_clients_num(void);
+void upsend_clients_num(char *cmds);
 
 /* upsend a sap's clients' info */
 void upsend_clients_info(char *mac_client);
@@ -52,3 +52,23 @@ void cmd_change_sap_channel(char *mac_sap, int to_channel);
 
 /* command: change a client to another channel */
 void cmd_change_client_channel(char *mac_sap, int to_channel);
+
+
+/* UDP */
+#define BUFFLEN 1024
+#define SERVERIP "192.168.1.1"
+#define SERVERPORT 9091
+
+/*Socket*/
+char buf[BUFFLEN];
+int socket_descriptor;
+struct sockaddr_in address;
+
+/* init Socket Client*/
+void user_udp_init(void);
+
+/*init Socket Server*/
+void server_udp_init();
+
+/*destroy Socket Client/Server */
+void user_udp_de_init();

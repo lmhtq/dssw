@@ -6,6 +6,13 @@
 typedef unsigned char uchar;
 #define RATENUM 128
 
+char self_mac[6];
+
+const char *iface = "wlp2s0";
+
+/* get self mac address */
+void get_self_mac();
+
 /* client's info of a SAP */
 typedef struct station_node
 {

@@ -3,6 +3,24 @@
 #include <string.h>
 #include "aware.h"
 
+/* get self mac address */
+void get_self_mac()
+{
+	char cmd1[100] = "ifconfig ";
+	char cmd2[100] = " | grep \'ether\' | awk \'{print $2}\'";
+	strcat(cmd1, iface);
+	strcat(cmd1, cmd2);
+
+	FILE *fp = popen(cmd1 ,"r");
+	char tmp[20];
+	int len = 32;
+	fgets(tmp, len, fp);
+	pclose(fp);
+	sscanf(tmp, "%x:%x:%x:%x:%x:%x", &self_mac[0],&self_mac[1],
+		&self_mac[2],&self_mac[3],&self_mac[4],&self_mac[5]);
+	//printf("%s\n", tmp);
+}
+
 /* SAP functions */
 
 //below no use
