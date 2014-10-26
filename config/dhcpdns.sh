@@ -1,4 +1,4 @@
-if [ $# -lt 3 ] then
+if [ $# -lt 3 ]; then
 	echo "parameters:net dnsmasqfile"
 	exit
 fi
